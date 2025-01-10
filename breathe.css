@@ -1,0 +1,119 @@
+body {
+    font-family: 'Quicksand', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #a8dadc, #457b9d);
+    color: #333;
+}
+
+header, footer {
+    background-color: #1d3557;
+    color: white;
+    padding: 1em;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1em;
+    width: 100%;
+    max-width: 800px;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+section {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 1.5em;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section:hover {
+    transform: scale(1.02);
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em 1.5em;
+    border: none;
+    border-radius: 20px;
+    background-color: #457b9d;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1d3557;
+}
+
+input[type="text"] {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: calc(100% - 1em);
+    margin-top: 1em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #457b9d;
+    outline: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+}
+
+.task-text {
+    flex: 1;
+    margin-right: 1em;
+}
+
+li button {
+    padding: 0.3em 0.6em;
+    border-radius: 12px;
+    background-color: #457b9d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+li button:hover {
+    background-color: #1d3557;
+}
+
+#exercise-suggestion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
