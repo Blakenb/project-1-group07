@@ -93,8 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Complete';
         completeButton.addEventListener('click', () => {
-            li.classList.toggle('completed');
-            saveTasks();
+            li.classList.add('completed');
+            setTimeout(() => {
+                li.remove();
+                saveTasks();
+            }, 500); // Delay removal to show the completed state
         });
         li.appendChild(taskSpan);
         li.appendChild(completeButton);

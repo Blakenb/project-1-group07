@@ -1,12 +1,12 @@
 body {
-    font-family: 'Quicksand', Arial, sans-serif;
+    font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     background: linear-gradient(to bottom, #a8dadc, #457b9d);
     color: #333;
 }
@@ -14,10 +14,24 @@ body {
 header, footer {
     background-color: #1d3557;
     color: white;
-    padding: 1em;
+    padding: 0.5em; /* Reduced padding */
     width: 100%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #1d3557;
+    color: white;
+    padding: 0.5em; /* Reduced padding */
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: 0.9em; /* Reduced font size */
 }
 
 main {
@@ -27,8 +41,9 @@ main {
     gap: 1em;
     width: 100%;
     max-width: 800px;
-    padding: 1em;
+    padding: 6em 1em 1em; /* Add top padding to avoid content being hidden behind the fixed header */
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 section {
@@ -81,6 +96,8 @@ input[type="text"]:focus {
 .completed {
     text-decoration: line-through;
     color: #888;
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
 }
 
 li {
@@ -116,4 +133,15 @@ li button:hover {
     margin-top: 1em;
     font-size: 1.2em;
     line-height: 1.5em;
+}
+
+/* Styles for screens less than 500px */
+@media (max-width: 500px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    section {
+        margin-bottom: 0;
+    }
 }
