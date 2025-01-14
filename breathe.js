@@ -170,3 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
+
+const calendarButton = document.getElementById("calendarButton")
+const calendar = document.getElementById("calendar")
+
+calendarButton.addEventListener("click",event => {
+    if(calendar.style.display === "none"){
+        calendar.style.display = "block";
+        calendarButton.textcontent = "Close Calendar";
+    }
+    else{
+    calendar.style.display = "none";
+    calendarButton.textContent = "Open Calendar"
+    }
+})
