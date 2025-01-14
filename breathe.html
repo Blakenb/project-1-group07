@@ -35,6 +35,30 @@
             <button id="add-task">Add Task</button>
             <button id="clear-tasks">Clear Tasks</button>
         </section>
+        <section id="mood-tracker">
+            <h2>Mood Tracker</h2>
+            <ul id="mood-tracker"></ul>
+            <label for="mood-tracker">How are you feeling today?</label>
+            <select name="moods" id="moods">     
+                <option value="happy">Happy</option>
+                <option value="depressed">Depressed</option>
+                <option value="energetic">Energetic</option>
+                <option value="dull">Dull</option>
+                <option value="Anxious">Anxious</option>
+            </select>
+            <button id="see-mood-diary">See Mood Diary</button>
+            <input type="text" id="mood-details-input" placeholder="Type details about your day">
+            <button id="save-mood-details-input">Save Details</button>
+        </section>
+        <div id="mood-diary-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Mood Diary</h2>
+                <ul id="past-moods"></ul>
+                <input type="text" id="mood-details" placeholder="Type details about your day">
+                <button id="save-mood-details">Save Details</button>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 Daily Calm: Breathe and Organize Your Day</p>
