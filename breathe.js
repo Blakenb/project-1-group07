@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moodSelect = document.getElementById("moods");
     const pastMoods = JSON.parse(localStorage.getItem('pastMoods')) || [];
 
+
     let breathingInterval;
     let countdownInterval;
 
@@ -165,10 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('All tasks cleared');
     });
 
-    btn.onclick = function() {
+    btn.onclick = function () {
         const pastMoodsList = document.getElementById("past-moods");
         pastMoodsList.innerHTML = "";
-        pastMoods.forEach(function(entry) {
+        pastMoods.forEach(function (entry) {
             const li = document.createElement("li");
             li.textContent = `${entry.mood}: ${entry.details}`;
             pastMoodsList.appendChild(li);
@@ -176,17 +177,17 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = "block";
     }
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 
-    saveBtn.onclick = function() {
+    saveBtn.onclick = function () {
         const moodDetails = document.getElementById("mood-details").value;
         const selectedMood = moodSelect.value;
         if (moodDetails) {
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    saveInputBtn.onclick = function() {
+    saveInputBtn.onclick = function () {
         const moodDetailsInput = document.getElementById("mood-details-input").value;
         const selectedMood = moodSelect.value;
         if (moodDetailsInput) {
@@ -222,13 +223,51 @@ document.addEventListener('DOMContentLoaded', () => {
 const calendarButton = document.getElementById("calendarButton")
 const calendar = document.getElementById("calendar")
 
-calendarButton.addEventListener("click",event => {
-    if(calendar.style.display === "none"){
+calendarButton.addEventListener("click", event => {
+    if (calendar.style.display === "none") {
         calendar.style.display = "block";
         calendarButton.textcontent = "Close Calendar";
     }
-    else{
-    calendar.style.display = "none";
-    calendarButton.textContent = "Open Calendar"
+    else {
+        calendar.style.display = "none";
+        calendarButton.textContent = "Open Calendar"
     }
 })
+
+let timerInterval; // Variable to hold the timer interval
+const initialTime = 55; // Initial timer value
+
+// Function to start the timer
+function startTimer() {
+    let timerElement = document.getElementById('timer');
+    let time = parseInt(timerElement.textContent, 10);
+
+    // Clear any existing timer
+    clearInterval(timerInterval);
+
+    // Start a new interval
+    timerInterval = setInterval(() => {
+        if (time > 0) {
+            time--;
+            timerElement.textContent = time;
+        } else {
+            clearInterval(timerInterval); // Stop the timer when it reaches 0
+        }
+    }, 1000);
+}
+
+// Function to stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Function to reset the timer
+function resetTimer() {
+    clearInterval(timerInterval); // Stop any ongoing interval
+    document.getElementById('timer').textContent = initialTime; // Reset to initial value
+}
+
+// Attach event listeners to buttons
+document.getElementById('startTimer').addEventListener('click', startTimer);
+document.getElementById('stopTimer').addEventListener('click', stopTimer);
+document.getElementById('resetTimer').addEventListener('click', resetTimer);
