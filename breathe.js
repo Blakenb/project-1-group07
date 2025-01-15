@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const upliftingMessages = [
-        "You are capable of amazing things.",
-        "Believe in yourself and all that you are.",
-        "Every day is a new beginning.",
-        "You are stronger than you think.",
-        "Stay positive, work hard, make it happen.",
-        "You are doing great, keep going!",
-        "Believe you can and you're halfway there."
+        "You are capable of amazing things. -Randy Fenoli",
+        "Believe in yourself and all that you are. -Christian D. Larson",
+        "Every day is a new beginning. -Unknown",
+        "You are stronger than you think. -Unknown",
+        "Stay positive, work hard, make it happen. -Unknown",
+        "You are doing great, keep going! -Unknown",
+        "Believe you can and you're halfway there. -Thedore Roosevelt",
+        "It is during our darkest moments that we must focus to see the light. - Aristotle"
     ];
 
     const exerciseSuggestions = [
