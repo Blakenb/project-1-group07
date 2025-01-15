@@ -29,6 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskButton = document.getElementById('add-task');
     const clearTasksButton = document.getElementById('clear-tasks');
     const currentDateTime = document.getElementById('current-date-time');
+    const modal = document.getElementById("mood-diary-modal");
+    const btn = document.getElementById("see-mood-diary");
+    const span = document.getElementsByClassName("close")[0];
+    const saveBtn = document.getElementById("save-mood-details");
+    const saveInputBtn = document.getElementById("save-mood-details-input");
+    const moodSelect = document.getElementById("moods");
+    const pastMoods = JSON.parse(localStorage.getItem('pastMoods')) || [];
 
     let breathingInterval;
     let countdownInterval;
@@ -158,6 +165,47 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('All tasks cleared');
     });
 
+    btn.onclick = function() {
+        const pastMoodsList = document.getElementById("past-moods");
+        pastMoodsList.innerHTML = "";
+        pastMoods.forEach(function(entry) {
+            const li = document.createElement("li");
+            li.textContent = `${entry.mood}: ${entry.details}`;
+            pastMoodsList.appendChild(li);
+        });
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    saveBtn.onclick = function() {
+        const moodDetails = document.getElementById("mood-details").value;
+        const selectedMood = moodSelect.value;
+        if (moodDetails) {
+            pastMoods.push({ mood: selectedMood, details: moodDetails });
+            localStorage.setItem('pastMoods', JSON.stringify(pastMoods));
+            document.getElementById("mood-details").value = "";
+        }
+    }
+
+    saveInputBtn.onclick = function() {
+        const moodDetailsInput = document.getElementById("mood-details-input").value;
+        const selectedMood = moodSelect.value;
+        if (moodDetailsInput) {
+            pastMoods.push({ mood: selectedMood, details: moodDetailsInput });
+            localStorage.setItem('pastMoods', JSON.stringify(pastMoods));
+            document.getElementById("mood-details-input").value = "";
+        }
+    }
+
     // Initialize date and time display
     updateDateTime();
 
@@ -170,3 +218,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
+
+const calendarButton = document.getElementById("calendarButton")
+const calendar = document.getElementById("calendar")
+
+calendarButton.addEventListener("click",event => {
+    if(calendar.style.display === "none"){
+        calendar.style.display = "block";
+        calendarButton.textcontent = "Close Calendar";
+    }
+    else{
+    calendar.style.display = "none";
+    calendarButton.textContent = "Open Calendar"
+    }
+})
