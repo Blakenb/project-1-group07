@@ -222,13 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const calendarButton = document.getElementById("calendarButton")
 const calendar = document.getElementById("calendar")
 
-calendarButton.addEventListener("click",event => {
-    if(calendar.style.display === "none"){
-        calendar.style.display = "block";
-        calendarButton.textcontent = "Close Calendar";
+calendarButton.addEventListener("click", event => {
+    if(calendar.style.display === "block"){
+        calendar.style.display = "none";
+        calendarButton.textContent = "Open Calendar";
     }
     else{
-    calendar.style.display = "none";
-    calendarButton.textContent = "Open Calendar"
+    calendar.style.display = "block";
+    calendarButton.textContent = "Close Calendar";
     }
 })
