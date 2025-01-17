@@ -145,3 +145,63 @@ li button:hover {
         margin-bottom: 0;
     }
 }
+
+/* Dark Mode Styles */
+
+body.dark-mode {
+    background: linear-gradient(to bottom, #111, #000);
+}
+
+body.dark-mode header {
+    background-color: #02001d;
+    color: #eee;
+    border-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #02001d;
+    color: #eee;
+    border-color: #444;
+}
+
+body.dark-mode section {
+    background-color: #222;
+    color: #eee;
+    border-color: #444;
+}
+
+#toggle-dark-mode {
+    position: absolute;
+    top: 2px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    max-width: 90%;
+    max-height: 50px;
+}
+
+@media (max-width: 746px) {
+    #toggle-dark-mode {
+        position: right;
+        right: 2px;
+        padding: 1px 1px;
+        font-size: 8px;
+        margin-top: 62px;
+        width: 11vw;
+        height: 5vw;
+    }
+}
+
+@media (min-width: 747px) and (max-width: 1080px) {
+    #toggle-dark-mode {
+        position: right;
+        margin-top: 40px;
+        right: 3px;
+        padding: 1px 1px;
+        font-size: 8px;
+        width: 6vw;
+        height: 2.5vw;
+    }
+}

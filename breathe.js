@@ -170,3 +170,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
+
+/* Dark Mode Code */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleDarkModeButton = document.getElementById('toggle-dark-mode');
+    const body = document.body;
+
+    // Check localStorage for saved preference
+    const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        toggleDarkModeButton.textContent = 'Light Mode';
+    }
+
+    toggleDarkModeButton.addEventListener('click', () => {
+        const darkModeEnabled = body.classList.toggle('dark-mode');
+        toggleDarkModeButton.textContent = darkModeEnabled ? 'Light Mode' : 'Dark Mode';
+
+        // Save preference in localStorage
+        localStorage.setItem('dark-mode', darkModeEnabled);
+    });
+});
