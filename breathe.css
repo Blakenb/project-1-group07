@@ -45,6 +45,9 @@ main {
     box-sizing: border-box;
     margin: 0 auto;
 }
+#calendar {
+    display: none;
+}
 
 section {
     background-color: #ffffff;
@@ -134,6 +137,8 @@ li button:hover {
     font-size: 1.2em;
     line-height: 1.5em;
 }
+
+
 
 /* Styles for screens less than 500px */
 @media (max-width: 500px) {

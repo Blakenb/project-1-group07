@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const upliftingMessages = [
-        "You are capable of amazing things.",
-        "Believe in yourself and all that you are.",
-        "Every day is a new beginning.",
-        "You are stronger than you think.",
-        "Stay positive, work hard, make it happen.",
-        "You are doing great, keep going!",
-        "Believe you can and you're halfway there."
+        "You are capable of amazing things. -Randy Fenoli",
+        "Believe in yourself and all that you are. -Christian D. Larson",
+        "Every day is a new beginning. -Unknown",
+        "You are stronger than you think. -Unknown",
+        "Stay positive, work hard, make it happen. -Unknown",
+        "You are doing great, keep going! -Unknown",
+        "Believe you can and you're halfway there. -Thedore Roosevelt",
+        "It is during our darkest moments that we must focus to see the light. - Aristotle"
     ];
 
     const exerciseSuggestions = [
@@ -29,6 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskButton = document.getElementById('add-task');
     const clearTasksButton = document.getElementById('clear-tasks');
     const currentDateTime = document.getElementById('current-date-time');
+    const modal = document.getElementById("mood-diary-modal");
+    const btn = document.getElementById("see-mood-diary");
+    const span = document.getElementsByClassName("close")[0];
+    const saveBtn = document.getElementById("save-mood-details");
+    const saveInputBtn = document.getElementById("save-mood-details-input");
+    const moodSelect = document.getElementById("moods");
+    const pastMoods = JSON.parse(localStorage.getItem('pastMoods')) || [];
+
 
     let breathingInterval;
     let countdownInterval;
@@ -158,6 +167,47 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('All tasks cleared');
     });
 
+    btn.onclick = function () {
+        const pastMoodsList = document.getElementById("past-moods");
+        pastMoodsList.innerHTML = "";
+        pastMoods.forEach(function (entry) {
+            const li = document.createElement("li");
+            li.textContent = `${entry.mood}: ${entry.details}`;
+            pastMoodsList.appendChild(li);
+        });
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    saveBtn.onclick = function () {
+        const moodDetails = document.getElementById("mood-details").value;
+        const selectedMood = moodSelect.value;
+        if (moodDetails) {
+            pastMoods.push({ mood: selectedMood, details: moodDetails });
+            localStorage.setItem('pastMoods', JSON.stringify(pastMoods));
+            document.getElementById("mood-details").value = "";
+        }
+    }
+
+    saveInputBtn.onclick = function () {
+        const moodDetailsInput = document.getElementById("mood-details-input").value;
+        const selectedMood = moodSelect.value;
+        if (moodDetailsInput) {
+            pastMoods.push({ mood: selectedMood, details: moodDetailsInput });
+            localStorage.setItem('pastMoods', JSON.stringify(pastMoods));
+            document.getElementById("mood-details-input").value = "";
+        }
+    }
+
     // Initialize date and time display
     updateDateTime();
 
@@ -171,7 +221,49 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTasks();
 });
 
-/* Dark Mode Code */
+
+
+// made changes to code so on click it calls immediately
+const calendarButton = document.getElementById("calendarButton")
+const calendar = document.getElementById("calendar")
+
+let timerInterval; // Variable to hold the timer interval
+const initialTime = 55; // Initial timer value
+
+// Function to start the timer
+function startTimer() {
+    let timerElement = document.getElementById('timer');
+    let time = parseInt(timerElement.textContent, 10);
+
+    // Clear any existing timer
+    clearInterval(timerInterval);
+
+    // Start a new interval
+    timerInterval = setInterval(() => {
+        if (time > 0) {
+            time--;
+            timerElement.textContent = time;
+        } else {
+            clearInterval(timerInterval); // Stop the timer when it reaches 0
+        }
+    }, 1000);
+}
+
+// Function to stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Function to reset the timer
+function resetTimer() {
+    clearInterval(timerInterval); // Stop any ongoing interval
+    document.getElementById('timer').textContent = initialTime; // Reset to initial value
+}
+
+// Attach event listeners to buttons
+document.getElementById('startTimer').addEventListener('click', startTimer);
+document.getElementById('stopTimer').addEventListener('click', stopTimer);
+document.getElementById('resetTimer').addEventListener('click', resetTimer);
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleDarkModeButton = document.getElementById('toggle-dark-mode');
@@ -192,3 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('dark-mode', darkModeEnabled);
     });
 });
+
+calendarButton.addEventListener("click", event => {
+    if(calendar.style.display === "block"){
+        calendar.style.display = "none";
+        calendarButton.textContent = "Open Calendar";
+    }
+    else{
+    calendar.style.display = "block";
+    calendarButton.textContent = "Close Calendar";
+    }
+})
