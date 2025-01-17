@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
-
+// made changes to code so on click it calls immediately
 const calendarButton = document.getElementById("calendarButton")
 const calendar = document.getElementById("calendar")
 
