@@ -220,18 +220,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
-
+// made changes to code so on click it calls immediately
 const calendarButton = document.getElementById("calendarButton")
 const calendar = document.getElementById("calendar")
 
 calendarButton.addEventListener("click", event => {
-    if (calendar.style.display === "none") {
-        calendar.style.display = "block";
-        calendarButton.textcontent = "Close Calendar";
-    }
-    else {
+    if(calendar.style.display === "block"){
         calendar.style.display = "none";
-        calendarButton.textContent = "Open Calendar"
+        calendarButton.textContent = "Open Calendar";
+    }
+    else{
+    calendar.style.display = "block";
+    calendarButton.textContent = "Close Calendar";
     }
 })
 
