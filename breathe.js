@@ -220,20 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from local storage
     loadTasks();
 });
+
+
+
 // made changes to code so on click it calls immediately
 const calendarButton = document.getElementById("calendarButton")
 const calendar = document.getElementById("calendar")
-
-calendarButton.addEventListener("click", event => {
-    if(calendar.style.display === "block"){
-        calendar.style.display = "none";
-        calendarButton.textContent = "Open Calendar";
-    }
-    else{
-    calendar.style.display = "block";
-    calendarButton.textContent = "Close Calendar";
-    }
-})
 
 let timerInterval; // Variable to hold the timer interval
 const initialTime = 55; // Initial timer value
@@ -272,3 +264,34 @@ function resetTimer() {
 document.getElementById('startTimer').addEventListener('click', startTimer);
 document.getElementById('stopTimer').addEventListener('click', stopTimer);
 document.getElementById('resetTimer').addEventListener('click', resetTimer);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleDarkModeButton = document.getElementById('toggle-dark-mode');
+    const body = document.body;
+
+    // Check localStorage for saved preference
+    const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        toggleDarkModeButton.textContent = 'Light Mode';
+    }
+
+    toggleDarkModeButton.addEventListener('click', () => {
+        const darkModeEnabled = body.classList.toggle('dark-mode');
+        toggleDarkModeButton.textContent = darkModeEnabled ? 'Light Mode' : 'Dark Mode';
+
+        // Save preference in localStorage
+        localStorage.setItem('dark-mode', darkModeEnabled);
+    });
+});
+
+calendarButton.addEventListener("click", event => {
+    if(calendar.style.display === "block"){
+        calendar.style.display = "none";
+        calendarButton.textContent = "Open Calendar";
+    }
+    else{
+    calendar.style.display = "block";
+    calendarButton.textContent = "Close Calendar";
+    }
+})
