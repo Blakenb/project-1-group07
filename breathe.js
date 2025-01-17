@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const upliftingMessages = [
-        "You are capable of amazing things.",
-        "Believe in yourself and all that you are.",
-        "Every day is a new beginning.",
-        "You are stronger than you think.",
-        "Stay positive, work hard, make it happen.",
-        "You are doing great, keep going!",
-        "Believe you can and you're halfway there."
+        "You are capable of amazing things. -Randy Fenoli",
+        "Believe in yourself and all that you are. -Christian D. Larson",
+        "Every day is a new beginning. -Unknown",
+        "You are stronger than you think. -Unknown",
+        "Stay positive, work hard, make it happen. -Unknown",
+        "You are doing great, keep going! -Unknown",
+        "Believe you can and you're halfway there. -Thedore Roosevelt",
+        "It is during our darkest moments that we must focus to see the light. - Aristotle"
     ];
 
     const exerciseSuggestions = [
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveInputBtn = document.getElementById("save-mood-details-input");
     const moodSelect = document.getElementById("moods");
     const pastMoods = JSON.parse(localStorage.getItem('pastMoods')) || [];
+
 
     let breathingInterval;
     let countdownInterval;
@@ -165,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('All tasks cleared');
     });
 
-    btn.onclick = function() {
+    btn.onclick = function () {
         const pastMoodsList = document.getElementById("past-moods");
         pastMoodsList.innerHTML = "";
-        pastMoods.forEach(function(entry) {
+        pastMoods.forEach(function (entry) {
             const li = document.createElement("li");
             li.textContent = `${entry.mood}: ${entry.details}`;
             pastMoodsList.appendChild(li);
@@ -176,17 +178,17 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = "block";
     }
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 
-    saveBtn.onclick = function() {
+    saveBtn.onclick = function () {
         const moodDetails = document.getElementById("mood-details").value;
         const selectedMood = moodSelect.value;
         if (moodDetails) {
@@ -196,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    saveInputBtn.onclick = function() {
+    saveInputBtn.onclick = function () {
         const moodDetailsInput = document.getElementById("mood-details-input").value;
         const selectedMood = moodSelect.value;
         if (moodDetailsInput) {
@@ -232,3 +234,41 @@ calendarButton.addEventListener("click", event => {
     calendarButton.textContent = "Close Calendar";
     }
 })
+
+let timerInterval; // Variable to hold the timer interval
+const initialTime = 55; // Initial timer value
+
+// Function to start the timer
+function startTimer() {
+    let timerElement = document.getElementById('timer');
+    let time = parseInt(timerElement.textContent, 10);
+
+    // Clear any existing timer
+    clearInterval(timerInterval);
+
+    // Start a new interval
+    timerInterval = setInterval(() => {
+        if (time > 0) {
+            time--;
+            timerElement.textContent = time;
+        } else {
+            clearInterval(timerInterval); // Stop the timer when it reaches 0
+        }
+    }, 1000);
+}
+
+// Function to stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Function to reset the timer
+function resetTimer() {
+    clearInterval(timerInterval); // Stop any ongoing interval
+    document.getElementById('timer').textContent = initialTime; // Reset to initial value
+}
+
+// Attach event listeners to buttons
+document.getElementById('startTimer').addEventListener('click', startTimer);
+document.getElementById('stopTimer').addEventListener('click', stopTimer);
+document.getElementById('resetTimer').addEventListener('click', resetTimer);
