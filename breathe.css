@@ -36,20 +36,22 @@ header {
 
 main {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1em;
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px; /* Adjust the max-width as needed */
     padding: 6em 1em 1em; /* Add top padding to avoid content being hidden behind the fixed header */
     box-sizing: border-box;
     margin: 0 auto;
 }
+
 #calendar {
     display: none;
 }
 
 section {
+    flex: 1 1 calc(33.333% - 1em); /* Adjust the percentage as needed */
     background-color: #ffffff;
     border: 1px solid #ccc;
     padding: 1.5em;
@@ -147,7 +149,8 @@ li button:hover {
     }
 
     section {
-        margin-bottom: 0;
+        flex: 1 1 100%; /* Full width for very small screens */
+        margin-bottom: 1em; /* Add some space between sections */
     }
 }
 
@@ -197,6 +200,10 @@ body.dark-mode section {
         width: 11vw;
         height: 5vw;
     }
+
+    section {
+        flex: 1 1 calc(100% - 1em); /* Single column */
+    }
 }
 
 @media (min-width: 747px) and (max-width: 1080px) {
@@ -208,5 +215,17 @@ body.dark-mode section {
         font-size: 8px;
         width: 6vw;
         height: 2.5vw;
+    }
+}
+
+@media (max-width: 1080px) {
+    section {
+        flex: 1 1 calc(50% - 1em); /* Two columns */
+    }
+}
+
+@media (max-width: 631px) {
+    section {
+        flex: 1 1 100%;
     }
 }
