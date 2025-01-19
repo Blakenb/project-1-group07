@@ -234,6 +234,7 @@ const initialTime = 55; // Initial timer value
 function startTimer() {
     let timerElement = document.getElementById('timer');
     let time = parseInt(timerElement.textContent, 10);
+    const audio = document.getElementById('meditation-audio');
 
     // Clear any existing timer
     clearInterval(timerInterval);
@@ -245,19 +246,27 @@ function startTimer() {
             timerElement.textContent = time;
         } else {
             clearInterval(timerInterval); // Stop the timer when it reaches 0
+            audio.pause(); // Stop the audio when the timer ends
         }
     }, 1000);
+
+    audio.play(); // Play the audio when the timer starts
 }
 
 // Function to stop the timer
 function stopTimer() {
     clearInterval(timerInterval);
+    const audio = document.getElementById('meditation-audio');
+    audio.pause(); // Pause the audio when the timer stops
 }
 
 // Function to reset the timer
 function resetTimer() {
     clearInterval(timerInterval); // Stop any ongoing interval
     document.getElementById('timer').textContent = initialTime; // Reset to initial value
+    const audio = document.getElementById('meditation-audio');
+    audio.pause(); // Pause the audio when the timer resets
+    audio.currentTime = 0; // Reset the audio to the beginning
 }
 
 // Attach event listeners to buttons
